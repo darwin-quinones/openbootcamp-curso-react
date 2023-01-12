@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 
 class Greeting extends Component {
+
+    // props datos(caracteristicas de los elementos)
+    // estado = informacion privada que se le pasa aun componente
     render() {
         return (
             <div>
