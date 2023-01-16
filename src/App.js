@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import Greeting from './components/pure/greeting';
-import GreetingF from './components/pure/greetingF';
+import ContactComponentA from './components/container/contactComponentA';
+// import Greeting from './components/pure/greeting';
+// import GreetingF from './components/pure/greetingF';
+// import TaskListComponent from './components/container/task_list';
 
 function App() {
   return (
@@ -10,7 +12,15 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {/* componente greeting */}
         {/* <Greeting name='Darwin'></Greeting> */}
-        <GreetingF name='Darwinn'></GreetingF>
+
+        {/* COMPONENTE FUNCIONAL */}
+        {/* <GreetingF name='Darwinn'></GreetingF> */}
+
+        {/* COMPONENTE DE LISTADO DE TRAREAS */}
+        {/* <TaskListComponent></TaskListComponent> */}
+
+        {/* COMPONENTE A DEL EJERCICIO DADO */}
+        <ContactComponentA></ContactComponentA>
       </header>
     </div>
   );
