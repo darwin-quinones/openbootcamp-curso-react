@@ -1,21 +1,30 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React,  {useState} from 'react';
+import PropTypes from 'prop-types';
 // import { Contact } from '../../models/contact.class';
 
+const ContactComponentB = ({connection}) => {
 
-const ContactComponentB = (connected) => {
+
+    var [connected, setconnected] = useState(connection)
+    //console.log(connection)
+    const changeState = () =>{
+        if(connected === false){setconnected(connected = true)}
+        else{setconnected(connected = false)}
+    }
     return (
         <div>
-            <p>Connected? {connected === true ? 'Online' : 'Offline'}</p>
-            
+        {/* {console.log(connected)} */}
+            <h3>Estado de conexión: {connected === true ? 'Contacto En Línea' : 'Contacto No Disponible'}</h3>
+            {(connected === true)? <button onClick={changeState}>Desconectarse</button> : <button onClick={changeState}>Conectarse</button>}
+                
         </div>
     );
 };
 
 
-// ContactComponentB.propTypes = {
-//     contact: PropTypes.instanceOf(Contact)
-// };
+ContactComponentB.propTypes = {
+    connection: PropTypes.bool
+};
 
 
 export default ContactComponentB;
