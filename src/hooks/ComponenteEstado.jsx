@@ -25,12 +25,10 @@ const ComponenteEstado = () => {
         setPuntos(puntos + 1)
     }
 
-
     return (
         <div>
             <h1>Hello Darwin</h1>
             <h2>Puntuación: {puntos}</h2>
-
             <button onClick={sumarPuntos}>Sumar puntos</button>
         </div>
     )

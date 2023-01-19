@@ -6,6 +6,7 @@ import Ejemplo2 from './hooks/Ejemplo2';
 import MiComponenteConContexto from './hooks/Ejemplo3';
 import Ejemplo4 from './hooks/Ejemplo4';
 import ComponenteEstado from './hooks/ComponenteEstado';
+import LifeCycleEjemple from './components/pure/lifeCycleEjemple';
 // import Greeting from './components/pure/greeting';
 // import GreetingF from './components/pure/greetingF';
 // import TaskListComponent from './components/container/task_list';
@@ -38,9 +39,9 @@ function App() {
           {/* <h3>Contenido del props.children</h3>
         </Ejemplo4> */}
 
-
-        <ComponenteEstado></ComponenteEstado>
-
+        {/* Ejemplo de componente que trae reenderiza un usuario aleatorio */}
+        {/* <ComponenteEstado></ComponenteEstado> */}
+        <LifeCycleEjemple></LifeCycleEjemple>
         
       </header>
     </div>
