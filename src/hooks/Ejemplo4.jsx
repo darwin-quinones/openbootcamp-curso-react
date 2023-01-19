@@ -1,6 +1,6 @@
 /**
  * Ejemplo para entender el uso de prop.clindren
- * La idea de este componente es pinte los valores que se le pasen desde el padre
+ * La idea de este componente es que pinte los valores que se le pasen desde el padre
  */
 
 import React from 'react';

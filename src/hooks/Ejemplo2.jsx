@@ -70,7 +70,9 @@ const Ejemplo2 = () => {
         console.log('CAMBIO EN EL ESTADO DEL CONTADOR 1')
         console.log('Mostrando referencia a elemento del DOM')
         console.log(myRef)
+        //* Se ejecuta solo cuando cambian las variables
     }, [contador1,  contador2])
+
 
     return (
         <div>
