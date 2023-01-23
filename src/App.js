@@ -9,7 +9,9 @@ import ComponenteEstado from './hooks/ComponenteEstado';
 import LifeCycleEjemple from './components/pure/lifeCycleEjemple';
 // import Greeting from './components/pure/greeting';
 // import GreetingF from './components/pure/greetingF';
-// import TaskListComponent from './components/container/task_list';
+import TaskListComponent from './components/container/task_list';
+import GreetingStyled from './components/pure/greetingStyled';
+import Clock from './components/pure/clock';
 
 function App() {
   return (
@@ -41,8 +43,15 @@ function App() {
 
         {/* Ejemplo de componente que trae reenderiza un usuario aleatorio */}
         {/* <ComponenteEstado></ComponenteEstado> */}
-        <LifeCycleEjemple></LifeCycleEjemple>
+        {/* <LifeCycleEjemple></LifeCycleEjemple> */}
         
+
+        {/* Estylos  */}
+
+        {/* <GreetingStyled name={'Darwin'}></GreetingStyled> */}
+
+        {/* clock */}
+        <Clock></Clock>
       </header>
     </div>
   );
