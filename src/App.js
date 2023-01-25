@@ -17,8 +17,8 @@ import ClockHook from './hooks/clockHook';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" /> */}
         {/* componente greeting */}
         {/* <Greeting name='Darwin'></Greeting> */}
 
@@ -55,9 +55,12 @@ function App() {
         {/* <Clock></Clock> */}
 
         {/* Componente clock funcional */}
-        <ClockHook componente={'ClockHook'}></ClockHook>
+        {/* <ClockHook componente={'ClockHook'}></ClockHook> */}
 
-      </header>
+      {/* </header> */}
+
+      {/* COMPONENTE DE LISTADO DE TRAREAS */}
+        {<TaskListComponent></TaskListComponent> }
     </div>
   );
 }

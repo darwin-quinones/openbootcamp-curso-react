@@ -2,12 +2,15 @@ import React, {useState, useEffect} from 'react';
 import { LEVELS } from '../../models/levels.enum';
 import { Task } from '../../models/task.class';
 import TaskComponent from '../pure/task';
+import TaskForm from './taskForm';
 
 const TaskListComponent = () => {
 
-    const defaultTask = new Task('Example', 'Default description', false, LEVELS.NORMAL)
+    const defaultTask1 = new Task('Example1', 'Description 1', true, LEVELS.NORMAL) 
+    const defaultTask2 = new Task('Example2', 'Description 2', false, LEVELS.URGENT)
+    const defaultTask3 = new Task('Example3', 'Description 3', false, LEVELS.BLOCKING)
     // State of the component
-    const [tasks, setTasks] = useState(defaultTask);
+    const [tasks, setTasks] = useState([defaultTask1, defaultTask2, defaultTask3]);
     const [loading, setLoading] = useState(true);
 
     // Life cycle control of the component
@@ -26,12 +29,47 @@ const TaskListComponent = () => {
 
     return (
         <div>
-            <div>
-                <h1>Your tasks:</h1>
+            <div className='col-12'>
+            <div className='card'>
+            {/* Card header (title) */}
+                <div className='card-header'>
+                    <h5>Your tasks:</h5>
+                </div>
+                {/* Card body (content)*/}
+                <div className='card-body' data-mdb-perfect-scrollbar='true' style={ { position: 'relative', height: '400px'} }>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Title</th>
+                                <th scope='col'>description</th>
+                                <th scope='col'>Priority</th>
+                                <th scope='col'>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* Iterar sobre una lista de tareas */}
+                            {/* TODO: APLICAR UN FOR/MAP PARA RENDERIZAR UNA LISTA */}
+                            {/* Se hace un mapeo de tasks */}
+                            { tasks.map((task, index) =>{
+                                    return(
+                                        <TaskComponent 
+                                            key={index} 
+                                            task={task}>
+                                        </TaskComponent>
+                                    )
+                                }) 
+                            }
 
-                {/* TODO: APLICAR UN FOR/MAP PARA RENDERIZAR UNA LISTA */}
+                        </tbody>
+                    </table>
+                </div>
+                <TaskForm></TaskForm>
 
-                <TaskComponent task={defaultTask}></TaskComponent>
+                <div className='card-footer'>
+
+                </div>
+            </div>
+0
             </div>
             
         </div>
