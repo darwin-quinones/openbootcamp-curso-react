@@ -13,6 +13,7 @@ import TaskListComponent from './components/container/task_list';
 import GreetingStyled from './components/pure/greetingStyled';
 import Clock from './components/pure/clock';
 import ClockHook from './hooks/clockHook';
+import Father from './components/container/father';
 
 function App() {
   return (
@@ -60,7 +61,10 @@ function App() {
       {/* </header> */}
 
       {/* COMPONENTE DE LISTADO DE TRAREAS */}
-        {<TaskListComponent></TaskListComponent> }
+        {/* {<TaskListComponent></TaskListComponent> } */}
+
+        {/* Gestion de eventos */}
+        <Father></Father>
     </div>
   );
 }
