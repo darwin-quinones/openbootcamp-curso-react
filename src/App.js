@@ -60,11 +60,11 @@ function App() {
 
       {/* </header> */}
 
-      {/* COMPONENTE DE LISTADO DE TRAREAS */}
-        {/* {<TaskListComponent></TaskListComponent> } */}
-
         {/* Gestion de eventos */}
-        <Father></Father>
+        {/* <Father></Father> */}
+
+        {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
+        {<TaskListComponent></TaskListComponent> }
     </div>
   );
 }

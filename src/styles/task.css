@@ -1,4 +1,4 @@
-h1{
+/* h1{
     color: cyan;
 }
 
@@ -6,4 +6,8 @@ h1{
 .task-name{
     font-weight: bold;
     color: cadetblue;
+} */
+
+.task-action {
+    cursor:pointer;
 }

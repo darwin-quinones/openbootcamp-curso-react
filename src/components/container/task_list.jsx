@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { LEVELS } from '../../models/levels.enum';
 import { Task } from '../../models/task.class';
 import TaskComponent from '../pure/task';
-import TaskForm from './taskForm';
+import TaskForm from '../pure/forms/taskForm';
 
 const TaskListComponent = () => {
 
@@ -23,8 +23,33 @@ const TaskListComponent = () => {
     }, [tasks]);
 
 
-    const changeCompleted = (id) =>{
-        console.log('TODO: Cambiar estado de una tarea');
+    function completeTask(task){
+        console.log('Complete this task:' + task)
+        const index = tasks.indexOf(task) // index of the task
+        // guardar todas las tareas que estan hasta el momento
+        const tempTask = [...tasks]
+        tempTask[index].completed = !tempTask[index].completed // se cambia el estado de acuerdo al indice
+        //we update de state of the component with the new list and it will update de 
+        // iteration of the task in order to show task updated
+        setTasks(tempTask)
+
+    }
+
+    function deleteTask(task) {
+        console.log('Deliting task:' + task)
+        const index = tasks.indexOf(task) // index of the task
+        const tempTask = [...tasks]
+        tempTask.splice(index, 1) // deliting task
+        // updating task
+        setTasks(tempTask)
+    }
+
+    function addTask(task){
+        console.log('Addin a new task: '+ task)
+        //const index = tasks.indexOf(task) // index of the task
+        const tempTask = [...tasks]
+        tempTask.push(task)
+        setTasks(tempTask)
     }
 
     return (
@@ -54,7 +79,10 @@ const TaskListComponent = () => {
                                     return(
                                         <TaskComponent 
                                             key={index} 
-                                            task={task}>
+                                            task={task}
+                                            complete={completeTask}
+                                            remove={deleteTask}
+                                            >
                                         </TaskComponent>
                                     )
                                 }) 
@@ -63,7 +91,6 @@ const TaskListComponent = () => {
                         </tbody>
                     </table>
                 </div>
-                <TaskForm></TaskForm>
 
                 <div className='card-footer'>
 
@@ -71,6 +98,7 @@ const TaskListComponent = () => {
             </div>
 0
             </div>
+                <TaskForm add={addTask}></TaskForm>
             
         </div>
     );
