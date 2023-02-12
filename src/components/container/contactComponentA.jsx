@@ -44,7 +44,8 @@ const ContactComponentA = () => {
                                         return(
                                             <ContactComponentB
                                                 key={index}
-                                                contact={contact}>
+                                                contact={contact}
+                                                >
                                             </ContactComponentB>
                                          
                                         )
