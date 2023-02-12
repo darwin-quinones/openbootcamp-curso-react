@@ -1,38 +1,45 @@
-import React,  {useState} from 'react';
+import React,  {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { Contact } from '../../models/contact.class';
 
 import '../../styles/task.css'
 
-const ContactComponentB = ({connection, contact}) => {
+const ContactComponentB = ({state, remove, contact}) => {
 
-
-    // var [connected, setconnected] = useState(connection)
-    // //console.log(connection)
-    // const changeState = () =>{
-    //     if(connected === false){setconnected(connected = true)}
-    //     else{setconnected(connected = false)}
-    // }
+    // make control of the changes
+    useEffect(() =>{
+        console.log('contact created')
+        return() =>{
+            console.log(`Contact ${contact.name} is going to unmound`)
+        }
+    }, [contact])
+   
 
     function contactStatusIcon(){
         if(contact.connected){
-            return(<i className='bi bi-toggle-on task-action ' style={{color: 'green', fontSize: '25px'}}></i>)
+            return(<i onClick={() => state(contact)} className='bi bi-toggle-on task-action ' style={{color: 'green', fontSize: '25px'}}></i>)
         }else{
-            return(<i className='bi bi-toggle-off task-action ' style={{color: 'green', fontSize: '25px'}}></i>)
+            return(<i onClick={() => state(contact)} className='bi bi-toggle-off task-action ' style={{color: 'green', fontSize: '25px'}}></i>)
         }
     }
 
     return (
-        <tr>
-            <td>{contact.name}</td>
-            <td>{contact.lastname}</td>
-            <td>{contact.email}</td>
+        <tr className='fw-normal'>
+            <td>
+                <span className='align-middle'>{contact.name}</span>
+            </td>
+            <td>
+                <span className='align-middle'>{contact.lastname}</span>
+            </td>
+            <td>
+                <span className='align-middle'>{contact.email}</span>
+            </td>
             <td>
             {contactStatusIcon()}
             </td>
             <td>
                
-                <i className='bi bi-trash task-action' style={{color: 'tomato', fontSize: '20px'}}></i>
+                <i onClick={ () => remove(contact) } className='bi bi-trash task-action' style={{color: 'tomato', fontSize: '20px'}}></i>
             </td>
         </tr>
     );
@@ -42,6 +49,8 @@ const ContactComponentB = ({connection, contact}) => {
 ContactComponentB.propTypes = {
     // connection: PropTypes.bool
     contact : PropTypes.instanceOf(Contact).isRequired,
+    state : PropTypes.func.isRequired,
+    remove : PropTypes.func.isRequired
 
 };
 

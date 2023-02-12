@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { Contact } from '../../models/contact.class';
 import ContactComponentB from '../pure/contactComponentB'
+import ContactForm from '../pure/forms/contactForm';
+// import contactForm from '../pure/forms/contactForm'
 
 
 
@@ -18,6 +20,30 @@ const ContactComponentA = () => {
         console.log('page loading')
        
     },[contacts])
+
+
+    function changeConnectionState(contact){
+        console.log('Changing state')
+        const index = contacts.indexOf(contact)
+        const tempContact = [...contacts]  // making a copy of contacts
+        tempContact[index].connected = !tempContact[index].connected
+        setContacts(tempContact)
+    }
+
+    function deleteContact(contact){
+        console.log('Deleting contact')
+        const index = contacts.indexOf(contact)
+        const tempContact = [...contacts] // making a copy of contacts
+        tempContact.splice(index, 1) // delete the contact accrding to the index
+        setContacts(tempContact)
+    }
+
+    function addContact(contact){
+        console.log('Adding contact: '+ contact)
+        const tempContact = [...contacts]
+        tempContact.push(contact)
+        setContacts(tempContact)
+    }
     
     return (
         <div>
@@ -28,7 +54,7 @@ const ContactComponentA = () => {
                         <p>My contacts</p>
                     </div>
                     {/* card-content */}
-                    <div className='card-body'>
+                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={ { position: 'relative', height: '400px'} }>
                         <table>
                             <thead>
                                 <tr>
@@ -45,8 +71,11 @@ const ContactComponentA = () => {
                                             <ContactComponentB
                                                 key={index}
                                                 contact={contact}
+                                                state={changeConnectionState}
+                                                remove={deleteContact}
                                                 >
                                             </ContactComponentB>
+                                           
                                          
                                         )
                                         
@@ -56,25 +85,15 @@ const ContactComponentA = () => {
                         </table>
                     </div>
                     <div className='card-footer'>
+                        
+                      
                     </div>
-                </div>
+                </div><br/>
+                <ContactForm add={addContact}></ContactForm>
             </div>
-        {/* <h3>Name: {contact.name}</h3>
-        <h3>Lastname: {contact.lastname}</h3>
-        <h3>Email: {contact.email}</h3>
-
-
-        <ContactComponentB 
-        connection={contact.connected}
-        >
-        </ContactComponentB> */}
+          
     </div>
     );
-};
-
-
-ContactComponentA.propTypes = {
-    contact: PropTypes.instanceOf(Contact)
 };
 
 
