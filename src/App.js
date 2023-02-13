@@ -16,6 +16,7 @@ import Clock from './components/pure/clock';
 import ClockHook from './hooks/clockHook';
 import Father from './components/container/father';
 import OptionalRender from './components/pure/optionalRender';
+import CuandradoComponent from './components/pure/cuandradoComponent';
 
 function App() {
   return (
@@ -66,10 +67,13 @@ function App() {
         {/* <Father></Father> */}
 
         {/* Ejemplo de rederizado condicional */}
-        <OptionalRender></OptionalRender>
+        {/* <OptionalRender></OptionalRender> */}
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
+
+        {/* CREANDO COMPONENTE CUADRADO DEL EJERCICIO */}
+        <CuandradoComponent></CuandradoComponent>
     </div>
   );
 }
