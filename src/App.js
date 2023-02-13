@@ -15,6 +15,7 @@ import GreetingStyled from './components/pure/greetingStyled';
 import Clock from './components/pure/clock';
 import ClockHook from './hooks/clockHook';
 import Father from './components/container/father';
+import OptionalRender from './components/pure/optionalRender';
 
 function App() {
   return (
@@ -64,8 +65,11 @@ function App() {
         {/* Gestion de eventos */}
         {/* <Father></Father> */}
 
+        {/* Ejemplo de rederizado condicional */}
+        <OptionalRender></OptionalRender>
+
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
-        <TaskListComponent></TaskListComponent> 
+        {/* <TaskListComponent></TaskListComponent>  */}
     </div>
   );
 }
