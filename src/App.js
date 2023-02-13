@@ -31,7 +31,7 @@ function App() {
         {/* <TaskListComponent></TaskListComponent> */}
 
         {/* COMPONENTE A DEL EJERCICIO DADO */}
-        <ContactComponentA></ContactComponentA>
+        {/* <ContactComponentA></ContactComponentA> */}
 
         {/* ejemplos de uso de HOOKS */}
         {/* <Ejemplo1></Ejemplo1> */}
@@ -65,7 +65,7 @@ function App() {
         {/* <Father></Father> */}
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
-        {/* {<TaskListComponent></TaskListComponent> } */}
+        <TaskListComponent></TaskListComponent> 
     </div>
   );
 }
