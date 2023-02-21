@@ -20,6 +20,7 @@ import CuandradoComponent from './components/pure/cuandradoComponent';
 import LoginFormik from './components/pure/forms/loginFormik.jsx';
 import LoginShortFormik from './components/pure/forms/loginShortFormik.jsx';
 import RegisterFormik from './components/pure/forms/registerFormik.jsx';
+import TaskFormik from './components/pure/forms/taskFormik.jsx';
 
 function App() {
   return (
@@ -78,7 +79,10 @@ function App() {
         {/* Ejemplos de eso de formoik */}
         {/* <LoginFormik></LoginFormik> */}
         {/* <LoginShortFormik></LoginShortFormik> */}
-        <RegisterFormik></RegisterFormik>
+        {/* <RegisterFormik></RegisterFormik> */}
+
+        {/* Ejercicios sessiones 13, 14 y 15 */}
+        <TaskFormik></TaskFormik>
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
