@@ -16,7 +16,7 @@ const CuandradoComponent = () => {
         setSquareStyle(SquareStyle => ({...SquareStyle, backgroundColor: `rgb(${yellow}, ${green}, ${red})`}));
     }
 
-    const changeColorOnMauseOver2 = () => {
+    const changeColorOnMauseLeave = () => {
         setSquareStyle(initialSquareStiles);
     }
 
@@ -34,7 +34,7 @@ const CuandradoComponent = () => {
             
             <h4>Ejercicios sesion 10, 11, 12</h4> <br />
             <h5>Create by Darwin Quiñones</h5><br/>
-            <div className='' onClick={countClicks} onMouseLeave={changeColorOnMauseOver2} onMouseOver={changeColorOnMauseOver} style={SquareStyle}></div>
+            <div className='' onClick={countClicks} onMouseLeave={changeColorOnMauseLeave} onMouseOver={changeColorOnMauseOver} style={SquareStyle}></div>
         </div>
     );
 }

@@ -70,10 +70,10 @@ function App() {
         {/* <OptionalRender></OptionalRender> */}
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
-        {/* <TaskListComponent></TaskListComponent>  */}
+        <TaskListComponent></TaskListComponent> 
 
-        {/* CREANDO COMPONENTE CUADRADO DEL EJERCICIO */}
-        <CuandradoComponent></CuandradoComponent>
+        {/* CREANDO COMPONENTE CUADRADO DEL EJERCICIO
+        <CuandradoComponent></CuandradoComponent> */}
     </div>
   );
 }
