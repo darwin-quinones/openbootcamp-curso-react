@@ -19,6 +19,7 @@ import OptionalRender from './components/pure/optionalRender';
 import CuandradoComponent from './components/pure/cuandradoComponent';
 import LoginFormik from './components/pure/forms/loginFormik.jsx';
 import LoginShortFormik from './components/pure/forms/loginShortFormik.jsx';
+import RegisterFormik from './components/pure/forms/registerFormik.jsx';
 
 function App() {
   return (
@@ -76,7 +77,8 @@ function App() {
 
         {/* Ejemplos de eso de formoik */}
         {/* <LoginFormik></LoginFormik> */}
-        <LoginShortFormik></LoginShortFormik>
+        {/* <LoginShortFormik></LoginShortFormik> */}
+        <RegisterFormik></RegisterFormik>
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
