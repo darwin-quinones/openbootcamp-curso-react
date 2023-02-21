@@ -17,6 +17,8 @@ import ClockHook from './hooks/clockHook';
 import Father from './components/container/father';
 import OptionalRender from './components/pure/optionalRender';
 import CuandradoComponent from './components/pure/cuandradoComponent';
+import LoginFormik from './components/pure/forms/loginFormik.jsx';
+import LoginShortFormik from './components/pure/forms/loginShortFormik.jsx';
 
 function App() {
   return (
@@ -69,11 +71,15 @@ function App() {
         {/* Ejemplo de rederizado condicional */}
         {/* <OptionalRender></OptionalRender> */}
 
-        {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
-        <TaskListComponent></TaskListComponent> 
-
         {/* CREANDO COMPONENTE CUADRADO DEL EJERCICIO
         <CuandradoComponent></CuandradoComponent> */}
+
+        {/* Ejemplos de eso de formoik */}
+        {/* <LoginFormik></LoginFormik> */}
+        <LoginShortFormik></LoginShortFormik>
+
+        {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
+        {/* <TaskListComponent></TaskListComponent>  */}
     </div>
   );
 }
