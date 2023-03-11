@@ -1,17 +1,17 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom'
 
+const ProfilePage = ( { }) => {
 
-const HomePage = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
 
     return (
         <div>
-            <h1>Home Page</h1>
-            <h2>Dashboard</h2>
-
-            <button onClick={ () => navigate('/profile')}>
-                Go to profile
+            <h1>Your Profile</h1>
+            <button onClick={ () => navigate('/task')}>
+                Tasks 
             </button>
 
             <button onClick={ () => navigate(-1) }>
@@ -21,4 +21,4 @@ const HomePage = () => {
     );
 }
 
-export default HomePage;
+export default ProfilePage;
