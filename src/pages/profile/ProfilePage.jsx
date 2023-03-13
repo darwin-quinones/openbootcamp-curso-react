@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const ProfilePage = ( { }) => {
 
-    const navigate = useNavigate()
+    const navigate = useHistory()
 
 
     return (
         <div>
             <h1>Your Profile</h1>
-            <button onClick={ () => navigate('/task')}>
+            <button onClick={ () => navigate.push('/task')}>
                 Tasks 
             </button>
 
-            <button onClick={ () => navigate(-1) }>
+            <button onClick={ () => navigate.goBack() }>
                 Go back
             </button>
         </div>

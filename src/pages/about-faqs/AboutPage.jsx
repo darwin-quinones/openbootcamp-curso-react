@@ -1,11 +1,11 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 const AboutPage = () => {
 
     const location = useLocation()
 
-    const navigate = useNavigate()
+    const navigate = useHistory()
     console.log('We are in Route: ' + location.pathname)
 
 
@@ -15,19 +15,19 @@ const AboutPage = () => {
             <h1> About | FAQs Page</h1>
             <div>
 
-            <button onClick={ () => navigate('/')}>
+            <button onClick={ () => navigate.push('/')}>
                 Go to Homepage
             </button>
-            <button onClick={ () => navigate(-2)}>
+            <button onClick={ () => navigate.go(-2)}>
                 Go 2 pages back 
             </button>
-            <button onClick={ () => navigate(-1)}>
+            <button onClick={ () => navigate.goBack()}>
                 Go black
             </button>
-            <button onClick={ () => navigate(1)}>
+            <button onClick={ () => navigate.goForward()}>
                 Go forward
             </button>
-            <button onClick={ () => navigate(2)}>
+            <button onClick={ () => navigate.go(2)}>
                 Go 2 pages forward
             </button>
             

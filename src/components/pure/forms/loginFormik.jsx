@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup'
 
@@ -13,6 +14,7 @@ const loginSchema = Yup.object().shape(
 
 
 const LoginFormik = () => {
+    const navigate = useHistory()
 
     const initialCredentials = {
         email: '',
@@ -32,7 +34,8 @@ const LoginFormik = () => {
                     await new Promise((r) => setTimeout(r, 1000));
                     alert(JSON.stringify(values, null, 2));
                     // We save the sata in the localstorage
-                    localStorage.setItem('credentials', values)
+                    await localStorage.setItem('credentials', values)
+                    navigate.push('/profile')
                 }}
             >
                 {/* We obtain props from Formik */}
