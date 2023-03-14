@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 
 const TaskDetailPage = ({ task }) => {
-
+    // GET ID SENT IT FROM URL
     const {id} = useParams()
 
     return (

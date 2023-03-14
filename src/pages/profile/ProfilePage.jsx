@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom'
 
-const ProfilePage = ( { }) => {
+const ProfilePage = ( ) => {
 
     const navigate = useHistory()
 
@@ -10,7 +10,7 @@ const ProfilePage = ( { }) => {
     return (
         <div>
             <h1>Your Profile</h1>
-            <button onClick={ () => navigate.push('/task')}>
+            <button onClick={ () => navigate.push('/tasks')}>
                 Tasks 
             </button>
 

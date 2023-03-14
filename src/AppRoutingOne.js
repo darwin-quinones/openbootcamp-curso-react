@@ -1,8 +1,14 @@
 // SESSION OF REACT-ROUTER-DOM
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import { BrowserRouter as Router, Link, Route, Switch, useParams, Redirect} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import HomePage from "./pages/home/HomePage.jsx";
 import NotFoundPage from "./pages/404/NotFoundPage.jsx";
@@ -16,91 +22,80 @@ import StatePage from "./pages/home/StatePage.jsx";
 function AppRoutingOne() {
   //const {logged, setLogged} = useState('')
   // SESSION OF REACT-ROUTER-DOM
-
-  let logged = false
-  let params = useParams()
   let taskList = [
     {
       id: 1,
-      name: 'Task 1',
-      description: 'My first task',
+      name: "Task 1",
+      description: "My first task",
     },
     {
       id: 2,
-      name: 'Task 2',
-      description: 'My second task',
-    }
-  ]
+      name: "Task 2",
+      description: "My second task",
+    },
+  ];
 
-
-
+  // useEffect(() =>{
+  //   logged = localStorage.getItem('credentials');
+  //   if(logged)
+  //   console.log('User Logged? :' + logged)
+  // }, [])
+  let logged = false;
   useEffect(() =>{
-    logged = localStorage.getItem('credentials');
-    if(logged)
-    console.log('User Logged? :' + logged)
-  }, [])
-  
+   logged = localStorage.getItem('credentials');
+   console.log('User logged: ', logged)
+  },[])
+
   return (
     // Aqui es donde iran nuestras rutas
     <Router>
       <div>
         <aside>
-          <Link to="/">| HOME</Link>
-          <Link to="/about">| ABOUT</Link>
-          <Link to="/faqs">| FADs |</Link>
-          <Link to="/task/1">| Task 1 |</Link>
-          <Link to="/task/2">| Task 2 |</Link>
-          <Link to="/any404">| No found |</Link>
-          <Link to='login'>Login</Link>
+          <Link to="/">|| Home |</Link>
+          <Link to="/about"> About </Link>
+          <Link to="/faqs">| FAQs ||</Link>
+          <Link to="/profile">| Profile ||</Link>
+          <Link to="/any404">| Not Found ||</Link>
+          <Link to="/login">|| Login |</Link>
         </aside>
         <main>
           <Switch>
-            <Route path="/" component={ HomePage } />
-            <Route path="/online-state" component={ StatePage } />
-            <Route path='/login' 
-            component={ HomePage }>
-            {
-              logged ? 
-              (<Redirect to='/home'/>)
-              : 
-              (<LoginPage/>) 
-            }
+            <Route exact path="/" component={ HomePage } />
+            <Route exact path="/login" component={ LoginPage } >
+              {
+                logged ?
+                () =>{
+                  alert('You are logged in. Redirecting to home...')
+                  return <Redirect to='/'/>
+                }
+                :() =>{
+                  return (<LoginPage/>)
+                }
+              }
             </Route>
-  
-            {/* make to routes with same component */}
-            {["/about", "/faqs"].map((path) => (
-              <Route key={path} path={path} component={ AboutPage } />
-            ))}
-
-            {/* profile */}
-            <Route 
-            path='/profile' 
-            component={ ProfilePage }>
+            <Route exact path="/profile" component={ ProfilePage } >
               {
                 logged ? 
                 <ProfilePage/>
                 :
-                () => {
-                  alert('You must be logged in. Redirecting to home...')
-                  return(<Redirect to='/login'/>)
+                () =>{
+                  alert('You must be logged in. Redirecting to login...')
+                  return <Redirect to='/login'/>
                 }
+                
               }
             </Route>
-
-            <Route path='/tasks' component={ TasksPage } />
-            <Route 
-            // PASAR DATOS EN LA RUTA O PARAMETROS
-            path='/task/:id' 
-            exact
+            <Route path="/(about|faqs)" component={ AboutPage } />
+            <Route path="/tasks" component={ TasksPage }/>
+            <Route exact 
+            path="/task/:id"
             render={
-              ({match}) => (<TaskDetailPage task={taskList[match.params.id-1]} />)
-            }
-           
-            >
-            </Route>
+                ({match}) => (<TaskDetailPage task={taskList[match.params.id-1]}/>)
+              }
+            />
 
-            {/* 404 - Page no found */}
-            <Route path="*" component={ NotFoundPage } /> 
+            {/* 404 - PAGE NOT FOUNT */}
+            <Route component={NotFoundPage} />
           </Switch>
         </main>
       </div>
