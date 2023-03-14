@@ -54,6 +54,8 @@ function AppRoutingOne() {
           <Link to="/">|| Home |</Link>
           <Link to="/about"> About </Link>
           <Link to="/faqs">| FAQs ||</Link>
+          <Link to="/task/1">| Task 1 ||</Link>
+          <Link to="/task/2">| Task 2 ||</Link>
           <Link to="/profile">| Profile ||</Link>
           <Link to="/any404">| Not Found ||</Link>
           <Link to="/login">|| Login |</Link>
@@ -61,6 +63,7 @@ function AppRoutingOne() {
         <main>
           <Switch>
             <Route exact path="/" component={ HomePage } />
+            <Route exact path="/online-state" component={ StatePage } />
             <Route exact path="/login" component={ LoginPage } >
               {
                 logged ?
