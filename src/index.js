@@ -18,7 +18,7 @@ import AppRoutingOne from './AppRoutingOne.js';
 import AppRoutingExercise from './AppRoutingExercise.js';
 
 const root = document.getElementById("root");
-render(<AppRoutingExercise/>, root);
+render(<App/>, root);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

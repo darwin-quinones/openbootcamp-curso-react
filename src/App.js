@@ -21,6 +21,7 @@ import LoginFormik from './components/pure/forms/loginFormik.jsx';
 import LoginShortFormik from './components/pure/forms/loginShortFormik.jsx';
 import RegisterFormik from './components/pure/forms/registerFormik.jsx';
 import TaskFormik from './components/pure/forms/taskFormik.jsx';
+import AsyncExample from './components/pure/AsyncExample.jsx';
 
 function App() {
   return (
@@ -82,7 +83,10 @@ function App() {
         {/* <RegisterFormik></RegisterFormik> */}
 
         {/* Ejercicios sessiones 13, 14 y 15 */}
-        <TaskFormik></TaskFormik>
+        {/* <TaskFormik></TaskFormik> */}
+
+        {/* Ejemplos de procesos asincronos */}
+        <AsyncExample/>
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
