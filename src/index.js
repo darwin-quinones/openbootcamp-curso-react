@@ -11,9 +11,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import React from "react";
 import { render } from "react-dom";
 import "./index.css";
+import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import AppRoutingFinal from './AppRoutingFinal.js';
-import reportWebVitals from './reportWebVitals';
 import AppRoutingOne from './AppRoutingOne.js';
 import AppRoutingExercise from './AppRoutingExercise.js';
 
