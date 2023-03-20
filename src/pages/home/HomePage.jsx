@@ -7,7 +7,14 @@ const HomePage = () => {
     const location = useLocation();
 
     console.log("we're in Route", location.pathname);
-    const navigateProps = (path) =>{}
+
+    const navigateProps = (path) => {
+        navigate.push({
+            pathname: path,
+            search: '?online=false', // QUERY PARAMS
+            state: {online: false}
+        })
+    }
 
     return (
         <div>
@@ -20,6 +27,9 @@ const HomePage = () => {
 
             <button onClick={ () => navigate.goBack() }>
                 Go back
+            </button>
+            <button onClick={ () => navigateProps('/online-state')}>
+                Go to to page with state / query params
             </button>
         </div>
     );
