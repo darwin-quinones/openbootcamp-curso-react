@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { getNumbers } from '../../services/ObservableService.js';
 
 // INTRODUCTION TO OBSERVABLE

@@ -96,7 +96,6 @@ function AppRoutingOne() {
                 ({match}) => (<TaskDetailPage task={taskList[match.params.id-1]}/>)
               }
             />
-
             {/* 404 - PAGE NOT FOUNT */}
             <Route component={NotFoundPage} />
           </Switch>
