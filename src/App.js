@@ -24,6 +24,7 @@ import TaskFormik from './components/pure/forms/taskFormik.jsx';
 import AsyncExample from './components/pure/AsyncExample.jsx';
 import ObservableExample from './components/pure/ObservableExample.jsx';
 import FetchExample from './components/pure/FetchExample';
+import AxiosExample from './components/pure/AxiosExample.jsx';
 
 function App() {
   return (
@@ -90,7 +91,8 @@ function App() {
         {/* Ejemplos de procesos asincronos */}
         {/* <AsyncExample/> */}
         {/* <ObservableExample/> */}
-        <FetchExample/>
+        {/* <FetchExample/> */}
+        <AxiosExample/>
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
