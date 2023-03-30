@@ -4,7 +4,7 @@ import { ThumbUp, ThumbDown } from '@mui/icons-material';
 import { getRandomJoke } from '../../services/fetchJokeService';
 
 const FetchingJokes = () => {
-    const jokeIds = []
+    let jokeIds = []
     const [joke, setJoke] = useState(null)
     let [likes, setLikes] = useState(0)
     let [dislikes, setDislikes] = useState(0)
@@ -25,19 +25,27 @@ const FetchingJokes = () => {
             .finally(() => { console.log('SUCCESSFUL: joke has been fetched') })
     }
 
-    function thumbUp() {
-         
-        
-        let jokeClicked = [...jokeIds].find((id) => id === joke.id)
-        if(jokeClicked){
-
-        }
-        if (canVote) {
-            setLikes(likes = likes + 1)
-        } else {
-            setLikes(likes = likes - 1)
-        }
+    const thumbUp = () => {
+        if(jokeIds.length > 0) {console.log('es mayor')}
         jokeIds.push(joke.id)
+        let jokeClicked = jokeIds.find(id => id === joke.id)
+        // console.log(joke.id)
+       
+        console.log(jokeClicked)
+        console.log(jokeIds)
+        if(jokeClicked){
+            setLikes(likes = likes - 1)
+        }else{
+            setLikes(likes = likes + 1)
+        }
+        // if (canVote) {
+        //     setLikes(likes = likes + 1)
+        // } else {
+        //     setLikes(likes = likes - 1)
+        // }
+        console.log('llego')
+    
+        
         setCanVote(!canVote)
     }
 
