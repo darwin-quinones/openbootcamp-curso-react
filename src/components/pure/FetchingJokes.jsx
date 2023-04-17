@@ -5,13 +5,9 @@ import { getRandomJoke } from '../../services/fetchJokeService';
 
 const FetchingJokes = () => {
     let [arrayJokesClicked, setArrayJokesClicked ] = useState([]);
-    
-    let objJokesClicked = {}
     const [joke, setJoke] = useState(null)
     let [likes, setLikes] = useState(0)
     let [dislikes, setDislikes] = useState(0)
-    let [canVote, setCanVote] = useState(true)
-    let [canDislike, setCanDislike] = useState(true)
 
 
     // useEffect(() => {
@@ -22,97 +18,82 @@ const FetchingJokes = () => {
         getRandomJoke()
             .then((response) => {
                 setJoke(response)
+                // A WAY TO ADD ANOTHER PROPERTY TO AN OBJECT ALREADY
+                setJoke(joke => ({...joke, canLike: true}))
+                setJoke(joke => ({...joke, canDislike: true}))
             })
             .catch((error) => { console.log(`Something went wrong fetching joke: ${error}`) })
             .finally(() => { console.log('SUCCESSFUL: joke has been fetched') })
     }
 
     const thumbUp = () => {
-        console.log('arrayJokesClicked', arrayJokesClicked)
+        
         if(arrayJokesClicked.length > 0) {
+            
+            let jokeClickedFalse = arrayJokesClicked.find(j => j.id === joke.id && j.like === false)
+            if(jokeClickedFalse){
+                let jokeIndexFalse = arrayJokesClicked.findIndex(j => j.id === joke.id && j.like === false)
+                setDislikes(dislikes = dislikes - 1) 
+                // setCanDislike(!canDislike)
+                setJoke(joke => ({...joke, canDislike: true}))
+                arrayJokesClicked.splice(jokeIndexFalse, 1)
+                setArrayJokesClicked(arrayJokesClicked)
+            }
             let jokeClicked = arrayJokesClicked.find(j => j.id === joke.id && j.like === true)
             if(jokeClicked){
                 let jokeIndex = arrayJokesClicked.findIndex(j => {return j.id === joke.id && j.like === true})
-                console.log('index:', jokeIndex)
                 setLikes(likes = likes - 1)
                 arrayJokesClicked.splice(jokeIndex, 1)
                 setArrayJokesClicked(arrayJokesClicked)
+                setJoke(joke => ({...joke, canLike: true}))
                 
             }else{
                 setArrayJokesClicked([...arrayJokesClicked, {id:joke.id, like: true}])
                 setLikes(likes = likes + 1)
+                setJoke(joke => ({...joke, canLike: false}))
             }
-            //console.log('jokeClicked: ', jokeClicked)
+
             
         }else{
             setArrayJokesClicked([...arrayJokesClicked, {id:joke.id, like: true}])
             setLikes(likes = likes + 1)
-        }
-        // console.log('arrayJokesClicked', arrayJokesClicked)
-        // let jokeClicked = arrayJokesClicked.find(j => j.id === joke.id && j.like === true)
-        // // console.log(joke.id)
-       
-        // console.log('jokeClicked' , jokeClicked)
-       
-         
-        // if(arrayJokesClicked === undefined){
-        //     setArrayJokesClicked(arrayJokesClicked.push({id:joke.id, like: true}))
-        //     setLikes(likes = likes + 1)
-        //     console.log('llego')
-        // }else{
-        //     setLikes(likes = likes - 1)
-        // }
-        // if (canVote) {
-        //     setLikes(likes = likes + 1)
-        // } else {
-        //     setLikes(likes = likes - 1)
-        // }
-        
-        
-        
-        setCanVote(!canVote)
+            setJoke(joke => ({...joke, canLike: false}))
+        }  
     }
 
     function thumbDown() {
-
-        console.log('arrayJokesClicked', arrayJokesClicked)
         if(arrayJokesClicked.length > 0){
             // find the joke clicked
             let jokeClicked = arrayJokesClicked.find(j => {return j.id === joke.id && j.like === true})
-            // if(jokeClicked){
-            //     setLikes(likes = likes - 1)
-            // }
+            if(jokeClicked){
+                let jokeIndex = arrayJokesClicked.findIndex(j => {return j.id === joke.id && j.like === true})
+                setLikes(likes = likes - 1)
+                // setCanLike(!canLike)
+               
+                arrayJokesClicked.splice(jokeIndex, 1)
+                setArrayJokesClicked(arrayJokesClicked)
+                setJoke(joke => ({...joke, canLike: true}))
+            }
             let jokeClickedFalse = arrayJokesClicked.find(j => {return j.id === joke.id && j.like === false})
             if(jokeClickedFalse){
                 // setLikes(likes = likes - 1)
                 setDislikes(dislikes = dislikes - 1 )
-                let jokeIndex = arrayJokesClicked.findIndex(j => j.id === joke.id && j.like === false)
-                arrayJokesClicked.splice(jokeIndex, 1)
-                setArrayJokesClicked(arrayJokesClicked)
-                
-
+                let jokeIndexFalse = arrayJokesClicked.findIndex(j => j.id === joke.id && j.like === false)
+                arrayJokesClicked.splice(jokeIndexFalse, 1)
+                setArrayJokesClicked(arrayJokesClicked)   
+                setJoke(joke => ({...joke, canDislike: true}))           
             }else{
                 setDislikes(dislikes = dislikes + 1 )
                 setArrayJokesClicked([...arrayJokesClicked, {id: joke.id, like: false}])
+                setJoke(joke => ({...joke, canDislike: false}))
             }
 
         }else{
             //setLikes(likes = likes - 1)
             setArrayJokesClicked([...arrayJokesClicked, {id: joke.id, like: false}])
             setDislikes(dislikes = dislikes + 1 )
+            setJoke(joke => ({...joke, canDislike: false}))
         }
-
-        // if (canDislike) {
-        //     setDislikes(dislikes = dislikes + 1)
-        // } else {
-        //     setDislikes(dislikes = dislikes - 1)
-        // }
-
-        // setCanDislike(!canDislike)
-
-
-
-
     }
 
     return (
@@ -126,8 +107,8 @@ const FetchingJokes = () => {
                             <div>
                                 <p>{joke.value}</p>
 
-                                <ThumbUp onClick={() => thumbUp()} color={canVote ? '' : 'primary'} style={{ marginBottom: 10 }} />
-                                <ThumbDown onClick={() => thumbDown()} color={canDislike ? '' : 'primary'} style={{ marginLeft: 10, marginBottom: 10 }} />
+                                <ThumbUp onClick={() => thumbUp()} color={ joke.canLike ? '' : 'primary'} style={{ marginBottom: 10 }} />
+                                <ThumbDown onClick={() => thumbDown()} color={joke.canDislike ? '' : 'primary'} style={{ marginLeft: 10, marginBottom: 10 }} />
                             </div>
 
 
