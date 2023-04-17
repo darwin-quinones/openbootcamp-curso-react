@@ -4,7 +4,9 @@ import { ThumbUp, ThumbDown } from '@mui/icons-material';
 import { getRandomJoke } from '../../services/fetchJokeService';
 
 const FetchingJokes = () => {
-    let jokeIds = []
+    let [arrayJokesClicked, setArrayJokesClicked ] = useState([]);
+    
+    let objJokesClicked = {}
     const [joke, setJoke] = useState(null)
     let [likes, setLikes] = useState(0)
     let [dislikes, setDislikes] = useState(0)
@@ -26,37 +28,91 @@ const FetchingJokes = () => {
     }
 
     const thumbUp = () => {
-        if(jokeIds.length > 0) {console.log('es mayor')}
-        jokeIds.push(joke.id)
-        let jokeClicked = jokeIds.find(id => id === joke.id)
-        // console.log(joke.id)
-       
-        console.log(jokeClicked)
-        console.log(jokeIds)
-        if(jokeClicked){
-            setLikes(likes = likes - 1)
+        console.log('arrayJokesClicked', arrayJokesClicked)
+        if(arrayJokesClicked.length > 0) {
+            let jokeClicked = arrayJokesClicked.find(j => j.id === joke.id && j.like === true)
+            if(jokeClicked){
+                let jokeIndex = arrayJokesClicked.findIndex(j => {return j.id === joke.id && j.like === true})
+                console.log('index:', jokeIndex)
+                setLikes(likes = likes - 1)
+                arrayJokesClicked.splice(jokeIndex, 1)
+                setArrayJokesClicked(arrayJokesClicked)
+                
+            }else{
+                setArrayJokesClicked([...arrayJokesClicked, {id:joke.id, like: true}])
+                setLikes(likes = likes + 1)
+            }
+            //console.log('jokeClicked: ', jokeClicked)
+            
         }else{
+            setArrayJokesClicked([...arrayJokesClicked, {id:joke.id, like: true}])
             setLikes(likes = likes + 1)
         }
+        // console.log('arrayJokesClicked', arrayJokesClicked)
+        // let jokeClicked = arrayJokesClicked.find(j => j.id === joke.id && j.like === true)
+        // // console.log(joke.id)
+       
+        // console.log('jokeClicked' , jokeClicked)
+       
+         
+        // if(arrayJokesClicked === undefined){
+        //     setArrayJokesClicked(arrayJokesClicked.push({id:joke.id, like: true}))
+        //     setLikes(likes = likes + 1)
+        //     console.log('llego')
+        // }else{
+        //     setLikes(likes = likes - 1)
+        // }
         // if (canVote) {
         //     setLikes(likes = likes + 1)
         // } else {
         //     setLikes(likes = likes - 1)
         // }
-        console.log('llego')
-    
+        
+        
         
         setCanVote(!canVote)
     }
 
     function thumbDown() {
-        if (canDislike) {
-            setDislikes(dislikes = dislikes + 1)
-        } else {
-            setDislikes(dislikes = dislikes - 1)
+
+        console.log('arrayJokesClicked', arrayJokesClicked)
+        if(arrayJokesClicked.length > 0){
+            // find the joke clicked
+            let jokeClicked = arrayJokesClicked.find(j => {return j.id === joke.id && j.like === true})
+            // if(jokeClicked){
+            //     setLikes(likes = likes - 1)
+            // }
+            let jokeClickedFalse = arrayJokesClicked.find(j => {return j.id === joke.id && j.like === false})
+            if(jokeClickedFalse){
+                // setLikes(likes = likes - 1)
+                setDislikes(dislikes = dislikes - 1 )
+                let jokeIndex = arrayJokesClicked.findIndex(j => j.id === joke.id && j.like === false)
+                arrayJokesClicked.splice(jokeIndex, 1)
+                setArrayJokesClicked(arrayJokesClicked)
+                
+
+            }else{
+                setDislikes(dislikes = dislikes + 1 )
+                setArrayJokesClicked([...arrayJokesClicked, {id: joke.id, like: false}])
+            }
+
+        }else{
+            //setLikes(likes = likes - 1)
+            setArrayJokesClicked([...arrayJokesClicked, {id: joke.id, like: false}])
+            setDislikes(dislikes = dislikes + 1 )
         }
 
-        setCanDislike(!canDislike)
+        // if (canDislike) {
+        //     setDislikes(dislikes = dislikes + 1)
+        // } else {
+        //     setDislikes(dislikes = dislikes - 1)
+        // }
+
+        // setCanDislike(!canDislike)
+
+
+
+
     }
 
     return (
