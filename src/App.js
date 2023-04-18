@@ -26,6 +26,7 @@ import ObservableExample from './components/pure/ObservableExample.jsx';
 import FetchExample from './components/pure/FetchExample';
 import AxiosExample from './components/pure/AxiosExample.jsx';
 import FetchingJokes from './components/pure/FetchingJokes';
+import AxiosCRUDExample from './components/pure/axiosCRUDExample.jsx';
 
 function App() {
   return (
@@ -96,8 +97,9 @@ function App() {
         {/* <AxiosExample/> */}
 
         {/* Ejercicios sesiones 19, 20 y 21 fetching an api */}
-        <FetchingJokes/>
-
+        {/* <FetchingJokes/> */}
+        {/* another axios example */}
+        <AxiosCRUDExample/>
 
         {/* COMPONENTE DE LISTADO DE TRAREAS PROYECTO FINAL */}
         {/* <TaskListComponent></TaskListComponent>  */}
