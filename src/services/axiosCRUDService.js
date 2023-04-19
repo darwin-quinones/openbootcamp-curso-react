@@ -17,6 +17,14 @@ import axios from 'axios'
  }
 
  // TODO Obtain all users
+export const getAllUsers = () => {
+    return axios.get('https://reqres.in/api/users')
+}
+// TODO Obtain all paged users 
+export const getAllPagedUsers = (page) => {
+    return axios.get(`https://reqres.in/api/users?page=${page}`)
+}
+
  
  // TODO Obtain user by ID
 
