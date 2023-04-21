@@ -27,7 +27,29 @@ export const getAllPagedUsers = (page) => {
 
  
  // TODO Obtain user by ID
+ export const getUserByID = (id) => {
+    return axios.get(`https://reqres.in/api/users/${id}`)
+}
 
  // TODO Create user
+ export const createUser = (name, job) => {
+    let body = {
+        name: name, 
+        job: job
+    }
+    return axios.post('https://reqres.in/api/users', body)
+}
 
  // TODO Update user
+ export const updateUser = (id, name, job) => {
+    let body = {
+        name: name, 
+        job: job
+    }
+    return axios.put(`https://reqres.in/api/users/${id}`, body)
+}
+
+ // TODO delete user
+ export const deleteUser = (id) => {
+    return axios.delete(`https://reqres.in/api/users/${id}`)
+}

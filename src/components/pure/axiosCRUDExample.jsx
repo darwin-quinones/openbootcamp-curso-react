@@ -2,7 +2,7 @@ import React, { } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup'
-import { login, getAllUsers, getAllPagedUsers } from '../../services/axiosCRUDService.js'
+import { login, getAllUsers, getAllPagedUsers, getUserByID, createUser, updateUser, deleteUser } from '../../services/axiosCRUDService.js'
 
 
 
@@ -42,7 +42,11 @@ const AxiosCRUDExample = () => {
     const obtainAllUsers = () => {
         getAllUsers()
             .then((response) => {
-                alert(JSON.stringify(response.data.data))
+                if (response.data.data && response.status === 200) {
+                    alert(JSON.stringify(response.data.data))
+                } else {
+                    throw new Error('No users found')
+                }
             })
             .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
             .finally(() => console.log('Users have been fetched'))
@@ -52,13 +56,64 @@ const AxiosCRUDExample = () => {
     const obtainAllPagedUsers = (page) => {
         getAllPagedUsers(page)
             .then((response) => {
-                alert(JSON.stringify(response.data.data))
+                if (response.data.data && response.status === 200) {
+                    alert(JSON.stringify(response.data.data))
+                } else {
+                    throw new Error('No page found')
+                }
             })
             .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
             .finally(() => console.log('Users have been fetched'))
 
     }
 
+    const obtainUserByID = (id) => {
+        getUserByID(id)
+            .then((response) => {
+                if (response.data.data && response.status === 200) {
+                    alert(JSON.stringify(response.data.data))
+                } else {
+                    throw new Error('No user found')
+                }
+            })
+            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+    }
+    const createNewUser = (name, job) => {
+        createUser(name, job)
+            .then((response) => {
+                if (response.data && response.status === 201) {
+                    alert(JSON.stringify(response.data))
+                } else {
+                    throw new Error('User no created')
+                }
+            })
+            .catch((error) => alert(`Something went wrong while creating user: ${error}`))
+    }
+
+    const updateUserByID = (id, name, job) => {
+        updateUser(id, name, job)
+            .then((response) => {
+                if (response.data.data && response.status === 200) {
+                    alert(JSON.stringify(response.data.data))
+                } else {
+                    throw new Error('User not updated')
+                }
+            })
+            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+    }
+
+
+    const deleteUserByID = (id) => {
+        deleteUser(id)
+            .then((response) => {
+                if (response.data.data && response.status === 200) {
+                    alert(`User with id: ${id} successfully deleted`)
+                } else {
+                    throw new Error('Can not delete user')
+                }
+            })
+            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+    }
     return (
         <div>
             <h4>Login form</h4>
@@ -116,8 +171,13 @@ const AxiosCRUDExample = () => {
             </Formik>
             {/* Examples buttons to test API responses */}
             <div>
-                <button onClick={ obtainAllUsers }>Get all users with axios</button>
-                <button onClick={ () => obtainAllPagedUsers(1) }>Get all users (page 1) with axios</button>
+                <button onClick={obtainAllUsers}>Get all users with axios</button>
+                <button onClick={() => obtainAllPagedUsers(1)}>Get all users (page 1) with axios</button>
+                <button onClick={() => obtainUserByID(1)}>Get user by id with axios</button>
+                <button onClick={() => createNewUser('Darwin', 'Desarrollador')}>Create user with axios</button>
+
+                <button onClick={() => updateUserByID(1, 'Darwin', 'Estudiante')}>Update user with axios</button>
+                <button onClick={() => deleteUserByID(1)}>Create user with axios</button>
             </div>
         </div>
     );
