@@ -41,7 +41,7 @@ export const getAllPagedUsers = (page) => {
 }
 
  // TODO Update user
- export const updateUser = (id, name, job) => {
+ export const updateUserByID = (id, name, job) => {
     let body = {
         name: name, 
         job: job
@@ -50,6 +50,6 @@ export const getAllPagedUsers = (page) => {
 }
 
  // TODO delete user
- export const deleteUser = (id) => {
+ export const deleteUserByID = (id) => {
     return axios.delete(`https://reqres.in/api/users/${id}`)
 }

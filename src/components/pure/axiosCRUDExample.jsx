@@ -2,7 +2,7 @@ import React, { } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup'
-import { login, getAllUsers, getAllPagedUsers, getUserByID, createUser, updateUser, deleteUser } from '../../services/axiosCRUDService.js'
+import { login, getAllUsers, getAllPagedUsers, getUserByID, createUser, updateUserByID, deleteUserByID } from '../../services/axiosCRUDService.js'
 
 
 
@@ -62,7 +62,7 @@ const AxiosCRUDExample = () => {
                     throw new Error('No page found')
                 }
             })
-            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+            .catch((error) => alert(`Something went wrong while fetching page: ${error}`))
             .finally(() => console.log('Users have been fetched'))
 
     }
@@ -76,7 +76,7 @@ const AxiosCRUDExample = () => {
                     throw new Error('No user found')
                 }
             })
-            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+            .catch((error) => alert(`Something went wrong while fetching user: ${error}`))
     }
     const createNewUser = (name, job) => {
         createUser(name, job)
@@ -90,29 +90,29 @@ const AxiosCRUDExample = () => {
             .catch((error) => alert(`Something went wrong while creating user: ${error}`))
     }
 
-    const updateUserByID = (id, name, job) => {
-        updateUser(id, name, job)
+    const updateUser = (id, name, job) => {
+        updateUserByID(id, name, job)
             .then((response) => {
-                if (response.data.data && response.status === 200) {
-                    alert(JSON.stringify(response.data.data))
+                if (response.data && response.status === 200) {
+                    alert(JSON.stringify(response.data))
                 } else {
-                    throw new Error('User not updated')
+                    throw new Error('User not found & no updated')
                 }
             })
-            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+            .catch((error) => alert(`Something went wrong while updating user: ${error}`))
     }
 
 
-    const deleteUserByID = (id) => {
-        deleteUser(id)
+    const deleteUser = (id) => {
+        deleteUserByID(id)
             .then((response) => {
-                if (response.data.data && response.status === 200) {
+                if (response.status === 204) {
                     alert(`User with id: ${id} successfully deleted`)
                 } else {
                     throw new Error('Can not delete user')
                 }
             })
-            .catch((error) => alert(`Something went wrong while fetching users: ${error}`))
+            .catch((error) => alert(`Something went wrong while deleting user: ${error}`))
     }
     return (
         <div>
@@ -176,8 +176,8 @@ const AxiosCRUDExample = () => {
                 <button onClick={() => obtainUserByID(1)}>Get user by id with axios</button>
                 <button onClick={() => createNewUser('Darwin', 'Desarrollador')}>Create user with axios</button>
 
-                <button onClick={() => updateUserByID(1, 'Darwin', 'Estudiante')}>Update user with axios</button>
-                <button onClick={() => deleteUserByID(1)}>Create user with axios</button>
+                <button onClick={() => updateUser(2, 'Darwin', 'Estudiante')}>Update user by id</button>
+                <button onClick={() => deleteUser(1)}>Delete user </button>
             </div>
         </div>
     );
